@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maquinas de estado</title>
+  <script>
+    let order;
+    document.addEventListener('DOMContentLoaded',async function () {
+      console.log("¡Estamos en vivo!");
+      const orders = await fetch('http://localhost:3000/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          carrito: 0,
+          direccion: '',
+          hora: '',
+          pago: false,
+          recibido: false,
+          finish: false
+        })
+      }).then(res => {
+        const data = res.json();
+        order = data;
+        return data
+      })
+      console.log(orders)
+    });
+    function _suma() {
+      console.log("suma")
+      oreder.carrito++;
+      const order = await fetch('http://localhost:3000/orders/'+orderId, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          carrito: order.carrito,
+        })
+      });
+    }
+  
+    function _resta() {
+      console.log("rest")
+    }
+    function _borra() {
+      console.log("borr")
+    }
+    function _update() {
+      console.log("upda")
+    }
+    function _pagar() {
+      console.log("paga")
+    }
+    function _recibido() {
+      console.log("reci")
+    }
+  
+  </script>
+</head>
+<body>
+    <div>
+      Hola!
+    </div>
+    <div>
+      Carrito!
+      <div>
+        Articulos: <span id="articulos"></span>
+        <button onclick="_suma();">suma</button>
+        <button  onclick="_resta();">resta</button>
+        <button  onclick="_borra();">borra</button>
+      </div>
+    </div>
+    <div>
+      Despacha!
+      <form>
+        Direccion: <input name="direccion" type="text"/>
+        Horario: <input name="horario" type="text"/>
+        <button  onclick="_update();">Actualizar</button>
+      </form>
+    </div>
+    <div>
+      Paga!
+      <button  onclick="_pagar();">Pagar</button>
+    </div>
+    <div>
+      Recibe!
+      <button  onclick="_recibido();">Recibido</button>
+    </div>
+</body>
+</html>

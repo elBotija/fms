@@ -1,0 +1,53 @@
+{
+  "orders": [],
+  "appState": {
+    "state": ""
+  },
+  "pedido": {
+    "START": "BIENVENIDO",
+    "BIENVENIDO": {
+      "TRANSITION": "CARRITO",
+      "VALIDATION": {
+        "ERROR": "No se creo ninguna Orden",
+        "FN": "(data) => (JSON.stringify(data) !== '{}')"
+      }
+    },
+    "CARRITO": {
+      "AGREGA": 1,
+      "QUITA": -1,
+      "BORRA": 0,
+      "TRANSITION": "DESPACHA",
+      "VALIDATION": {
+        "ERROR": "No tiene articulos",
+        "FN": "(data) => (data.carrito > 0)"
+      }
+    },
+    "DESPACHA": {
+      "CONFIRMA": {
+        "DIRECCION": true,
+        "HORA": false
+      },
+      "TRANSITION": "PAGA",
+      "VALIDATION": {
+        "ERROR": "No se puede despachar, agregue la direccion",
+        "FN": "(data) => (data.direccion.length)"
+      }
+    },
+    "PAGA": {
+      "PAGO": true,
+      "TRANSITION": "RECIBE",
+      "VALIDATION": {
+        "ERROR": "No se recibio el pago",
+        "FN": "(data) => (data.pago)"
+      }
+    },
+    "RECIBE": {
+      "RECIBIDO": true,
+      "TRANSITION": "BIENVENIDO",
+      "VALIDATION": {
+        "ERROR": "No se pudo entregar la orden todavia",
+        "FN": "(data) => (data.recibido)"
+      }
+    }
+  }
+}
