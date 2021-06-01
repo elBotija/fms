@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { setAdress } from '../actions/sessions';
+import { next } from './Next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Despacha = ({ data, setSession }) => {
+const Despacha = ({ data, setSession, history }) => {
   const [direccion, setDireccion] = useState(data.direccion);
   const [hora, setHora] = useState(data.hora);
 
@@ -35,6 +36,7 @@ const Despacha = ({ data, setSession }) => {
             <TextField id="standard" label="Horario" size="small" defaultValue={data.hora} onChange={e => setHora(e.target.value)} />
           </div>
           <Button variant="contained" color="primary" onClick={() => _updateAdress()}>Actualizar</Button>
+          {next(history, '/paga')}
         </form>
       </div>
     </>

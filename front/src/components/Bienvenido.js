@@ -2,10 +2,11 @@ import React from 'react'
 import Button from '@material-ui/core/Button';
 import { createSession } from '../actions/sessions';
 
-const Bienvenido = ({setSession}) => {
+const Bienvenido = ({setSession, history}) => {
   const handelerSession = async () => {
     const data = await createSession();
-    setSession(data);
+    await setSession(data);
+    history.push('/carrito')
   }
   return (
     <>

@@ -1,4 +1,7 @@
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
+
 import Bienvenido from "./components/Bienvenido";
 import Carrito from './components/Carrito';
 import Despacha from './components/Despacha';
@@ -6,8 +9,6 @@ import Paga from './components/Paga';
 import Recibe from './components/Recibe';
 
 import ReactJsonSyntaxHighlighter from 'react-json-syntax-highlighter';
-import { useState } from 'react';
-
 
 
 function App() {
@@ -15,14 +16,18 @@ function App() {
   return (
     <>
       <Container>
-        <ReactJsonSyntaxHighlighter  obj={getSession}/>
+        <ReactJsonSyntaxHighlighter obj={getSession} />
       </Container>
       <Container>
-        <Bienvenido setSession={setSession} />
-        <Carrito data={getSession} setSession={setSession}></Carrito>
-        <Despacha data={getSession} setSession={setSession}/>
-        <Paga data={getSession} setSession={setSession}/>
-        <Recibe data={getSession} setSession={setSession}/>
+        <Router>
+          <Switch>
+            <Route path='/' exact render={(props) => <Bienvenido {...props} setSession={setSession} />} />
+            <Route path='/carrito' exact render={(props) => <Carrito {...props} data={getSession} setSession={setSession} />} />
+            <Route path='/despacha' exact render={(props) => <Despacha {...props} data={getSession} setSession={setSession} />} />
+            <Route path='/paga' exact render={(props) => <Paga {...props} data={getSession} setSession={setSession} />} />
+            <Route path='/recibe' exact render={(props) => <Recibe {...props} data={getSession} setSession={setSession} />} />
+          </Switch>
+        </Router>
       </Container>
     </>
   );
