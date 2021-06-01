@@ -34,11 +34,20 @@ const isFinishSessionClose = async () => {
   }
 }
 
+const updateState = async (payload) => {
+  try {
+    await axios.patch('http://localhost:5000/appState/'+payload.id, payload);
+  } catch (error) {
+    await axios.post('http://localhost:5000/appState', payload);
+  }
+}
+
 const fmsPedido = async (start = pedido.START) => {
   await getActiveSession();
   setTimeout(() => {
     if (pedido[start].VALIDATION.FN(newPedido)) {
       state = pedido[start].TRANSITION
+      updateState({ state, id: newPedido.id });
       fmsPedido(pedido[start].TRANSITION)
     } else {
       console.log('\x1b[36m%s\x1b[0m', pedido[start].VALIDATION.ERROR);

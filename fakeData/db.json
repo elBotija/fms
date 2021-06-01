@@ -1,8 +1,56 @@
 {
-  "orders": [],
-  "appState": {
-    "state": ""
-  },
+  "orders": [
+    {
+      "carrito": 1,
+      "direccion": "av siempre viva 222",
+      "hora": "",
+      "pago": true,
+      "recibido": true,
+      "finish": true,
+      "id": 1
+    },
+    {
+      "carrito": 1,
+      "direccion": "av siempre viva 222",
+      "hora": "",
+      "pago": true,
+      "recibido": true,
+      "finish": true,
+      "id": 2
+    },
+    {
+      "carrito": 1,
+      "direccion": "av siempre viva 222",
+      "hora": "",
+      "pago": true,
+      "recibido": true,
+      "finish": true,
+      "id": 3
+    },
+    {
+      "carrito": 1,
+      "direccion": "av siempre viva 222",
+      "hora": "",
+      "pago": true,
+      "recibido": true,
+      "finish": true,
+      "id": 4
+    }
+  ],
+  "appState": [
+    {
+      "state": "CARRITO",
+      "id": 2
+    },
+    {
+      "state": "BIENVENIDO",
+      "id": 3
+    },
+    {
+      "state": "BIENVENIDO",
+      "id": 4
+    }
+  ],
   "pedido": {
     "START": "BIENVENIDO",
     "BIENVENIDO": {
