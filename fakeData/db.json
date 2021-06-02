@@ -1,110 +1,6 @@
 {
-  "orders": [
-    {
-      "carrito": 1,
-      "direccion": "av siempre viva 222",
-      "hora": "",
-      "pago": true,
-      "recibido": true,
-      "finish": true,
-      "id": 1
-    },
-    {
-      "carrito": 1,
-      "direccion": "av siempre viva 222",
-      "hora": "",
-      "pago": true,
-      "recibido": true,
-      "finish": true,
-      "id": 2
-    },
-    {
-      "carrito": 1,
-      "direccion": "av siempre viva 222",
-      "hora": "",
-      "pago": true,
-      "recibido": true,
-      "finish": true,
-      "id": 3
-    },
-    {
-      "carrito": 1,
-      "direccion": "av siempre viva 222",
-      "hora": "",
-      "pago": true,
-      "recibido": true,
-      "finish": true,
-      "id": 4
-    },
-    {
-      "carrito": 0,
-      "direccion": "",
-      "hora": "",
-      "pago": false,
-      "recibido": false,
-      "finish": false,
-      "id": 5
-    },
-    {
-      "carrito": 0,
-      "direccion": "",
-      "hora": "",
-      "pago": false,
-      "recibido": false,
-      "finish": false,
-      "id": 6
-    },
-    {
-      "carrito": 0,
-      "direccion": "",
-      "hora": "",
-      "pago": false,
-      "recibido": false,
-      "finish": false,
-      "id": 7
-    },
-    {
-      "carrito": 1,
-      "direccion": "",
-      "hora": "",
-      "pago": false,
-      "recibido": false,
-      "finish": false,
-      "id": 8
-    },
-    {
-      "carrito": 1,
-      "direccion": "av",
-      "hora": "",
-      "pago": true,
-      "recibido": true,
-      "finish": false,
-      "id": 9
-    },
-    {
-      "carrito": 4,
-      "direccion": "",
-      "hora": "",
-      "pago": false,
-      "recibido": false,
-      "finish": false,
-      "id": 10
-    }
-  ],
-  "appState": [
-    {
-      "state": "CARRITO",
-      "id": 2
-    },
-    {
-      "state": "BIENVENIDO",
-      "id": 3
-    },
-    {
-      "state": "BIENVENIDO",
-      "id": 4
-    }
-  ],
+  "orders": [],
+  "appState": [],
   "pedido": {
     "START": "BIENVENIDO",
     "BIENVENIDO": {
@@ -150,6 +46,15 @@
         "ERROR": "No se pudo entregar la orden todavia",
         "FN": "(data) => (data.recibido)"
       }
+    }
+  },
+  "genericsFn": {
+    "getActiveSession": {
+      "request": {
+        "method": "get",
+        "url": "http://localhost:5000/orders?_sort=id&_limit=1&_order=desc&finish_like=false"
+      },
+      "thenEval": "${res.data.length}"
     }
   }
 }

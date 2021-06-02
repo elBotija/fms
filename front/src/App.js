@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 
@@ -9,10 +9,32 @@ import Paga from './components/Paga';
 import Recibe from './components/Recibe';
 
 import ReactJsonSyntaxHighlighter from 'react-json-syntax-highlighter';
+import axios from 'axios';
 
 
 function App() {
   const [getSession, setSession] = useState({});
+  const [genericsFn, setGenericsFn] = useState({});
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/genericsFn").then(res => setGenericsFn(res.data))
+  }, []);
+
+  useEffect(() => {
+    if(JSON.stringify(genericsFn) !== '{}') {
+      console.log(genericsFn)
+      axios(genericsFn.getActiveSession.request).then(res => {
+        if(`${genericsFn.getActiveSession.thenIf}`){
+          console.log("entre", res)
+        }else{
+          console.log("sali", res)
+        }
+      })
+    }
+  }, [genericsFn]);
+
+  console.log("genericFn", genericsFn)
+
   return (
     <>
       <Container>
